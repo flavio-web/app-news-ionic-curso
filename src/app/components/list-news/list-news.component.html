@@ -1,0 +1,24 @@
+<ion-col size="4" class="ion-align-self-center ion-padding-vertical">
+  <img [src]="noticia.image! | notImage" class="img-list" />
+</ion-col>
+<ion-col size="8" class="ion-padding-vertical">
+  <ion-label>
+    <p>
+      <ion-text class="fecha-list">{{ noticia.published_at | date }}</ion-text>
+    </p>
+    <ion-text color="dark">
+      <h2><b>{{ noticia.title }}</b></h2>
+    </ion-text>
+  </ion-label>
+
+  <ion-list class="ion-no-padding ion-no-margin">
+    <ion-item class="ion-no-padding ion-no-margin">
+      <ion-icon aria-hidden="true" name="bookmark-outline" slot="end"></ion-icon>
+      <ion-label class="ion-no-padding">
+        <ion-chip color="danger" slot="start">
+          {{ noticia.category | titlecase }}
+        </ion-chip>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-col>

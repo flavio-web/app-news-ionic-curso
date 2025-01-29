@@ -1,17 +1,91 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab 1
+      App News
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content [fullscreen]="true" class="ion-padding">
 
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+  <ion-grid fiexed class="ion-no-padding ion-no-margin">
+    <ion-row>
+      <ion-col>
+        <ion-searchbar></ion-searchbar>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-segment [scrollable]="true" value="all" color="secondary">
+    <ion-segment-button value="all">
+      <ion-label color="secondary">All</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="general">
+      <ion-label color="secondary">General</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="business">
+      <ion-label color="secondary">Business</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="entertainment">
+      <ion-label color="secondary">Entertainment</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="health">
+      <ion-label color="secondary">Health</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="science">
+      <ion-label color="secondary">Science</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="sports">
+      <ion-label color="secondary">Sports</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="technology">
+      <ion-label color="secondary">Technology</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col>
+        <h4 class="titulo">Tendencias</h4>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <swiper-container [slidesPerView]="1" [spaceBetween]="10" [pagination]="{ clickable: true }"
+    [scrollbar]="{ draggable: true }" [breakpoints]="{
+        '640': { slidesPerView: 2, spaceBetween: 10 },
+        '768': { slidesPerView: 3, spaceBetween: 5 },
+        '1024': { slidesPerView: 3, spaceBetween: 10 },
+        '1440': { slidesPerView: 4, spaceBetween: 10 },
+      }">
+    <swiper-slide *ngFor="let noticia of noticias" class="ion-padding">
+      <app-card-new [noticia]="noticia" (showNoticia)="showNoticia($event)" />
+    </swiper-slide>
+  </swiper-container>
+
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col>
+        <h4 class="titulo">Ultimas Noticias</h4>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-list lines="none">
+    <ion-grid>
+      <ion-row class="ion-justify-content-between">
+        @for(noticia of noticias; track i; let i = $index){
+          <ion-col size="12" size-md="4" size-lg="3">
+            <ion-item>
+              <app-list-news [noticia]="noticia" (click)="showNoticia(noticia)"></app-list-news>
+            </ion-item>
+          </ion-col>
+        }
+      </ion-row>
+    </ion-grid>
+
+
+
+  </ion-list>
+
 </ion-content>

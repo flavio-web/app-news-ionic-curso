@@ -1,0 +1,21 @@
+<ion-card color="light">
+  <ion-img [alt]="noticia.title" [src]="noticia.image | notImage" (click)="abrirNoticia()" class="animate__animated animate_fadeIn" ></ion-img>
+  <div class="noticia-more">
+    <ion-button fill="clear" (click)="lanzarMenu()">
+      <ion-icon slot="icon-only" name="ellipsis-vertical-outline"></ion-icon>
+    </ion-button>
+  </div>
+  <ion-card-header (click)="abrirNoticia()">
+    <ion-card-subtitle>
+      <span class="text-primary animate__animated animate__fadeUp animate_delay-2s">
+        {{ indice + 1 }}
+      </span>
+      <span class="noticia-source animate__animated animate__fadeUp animate_delay-2s">
+        {{ noticia.title }}
+      </span>
+    </ion-card-subtitle>
+  </ion-card-header>
+  <ion-card-content>
+
+  </ion-card-content>
+</ion-card>

@@ -1,0 +1,11 @@
+<ion-card (click)="seleccionarNoticia(noticia)">
+  <img [alt]="noticia.title" [src]="noticia.image | notImage">
+  <ion-card-header>
+    <ion-card-subtitle>
+      <ion-chip color="danger">
+        {{ noticia.category | titlecase }}
+      </ion-chip>
+    </ion-card-subtitle>
+    <ion-card-title class="ion-text-wrap">{{ noticia.title | substringText }}</ion-card-title>
+  </ion-card-header>
+</ion-card>

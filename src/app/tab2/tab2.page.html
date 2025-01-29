@@ -1,17 +1,40 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
+<ion-header [translucent]="true" class="ion-no-border">
+  <ion-toolbar color="dark">
     <ion-title>
-      Tab 2
+      App News
     </ion-title>
+    <ion-segment scrollable="true" color="primary" [value]="segment" (ionChange)="segmentChanged($event.detail!.value)" >
+      <ion-segment-button [value]="category" *ngFor="let category of categorias" >
+        <ion-label text-capitalize color="light">{{ category }}</ion-label>
+      </ion-segment-button>
+    </ion-segment>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 2</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content [fullscreen]="true" color="dark">
 
-  <app-explore-container name="Tab 2 page"></app-explore-container>
+  <!--refresh-->
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <!--noticias-->
+  <app-noticias [noticias]="noticias"></app-noticias>
+
+  <!--skeleton-->
+  @if( isLoad() ){
+    <app-skeleton-noticia [countSkeletons]="10" />
+  }
+
+
+  <!-- scroll infinite -->
+  <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)" >
+    <ion-infinite-scroll-content
+      class="loadingspinner"
+      loadingSpinner="bubles"
+      loadingText="Cargando mas noticias..."
+    >
+
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </ion-content>
